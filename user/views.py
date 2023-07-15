@@ -22,3 +22,7 @@ class SignUp(APIView):
             CustomUser.objects.create_user(username=username, password=pass1, email=email,
                                            full_name=full_name)
             return Response({'message': 'User created successfully!'}, status=status.HTTP_201_CREATED)
+        
+class get_users(APIView):
+    def get(self, request):
+        return Response({"message":"kiram tu moh3n"})
