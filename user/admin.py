@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomUser
+from .models import *
 from django.contrib.auth.admin import UserAdmin as DefaultUserAdmin
 # Register your models here.
 
@@ -39,3 +39,8 @@ class UserAdmin(DefaultUserAdmin):
         'phone_number',
         'email',
     )
+    
+    
+@admin.register(Teacher)
+class AdminTeacher(admin.ModelAdmin):
+    pass
