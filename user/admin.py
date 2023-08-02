@@ -10,8 +10,13 @@ class UserAdmin(DefaultUserAdmin):
         (None, {'fields': ('username', 'password')}),
         ('Personal info', {
             'fields': (
-                'full_name',
+                'first_name',
+                'last_name',
                 'email',
+                'sex',
+                'location',
+                'phone_number',
+                'profile_image'
             )
         }),
         ('Permissions', {
@@ -29,13 +34,15 @@ class UserAdmin(DefaultUserAdmin):
     list_display = (
         'username',
         'email',
-        'full_name',
+        'first_name',
+        'last_name',
         'is_staff',
     )
 
     search_fields = (
         'username',
-        'full_name',
+        'first_name',
+        'last_name',
         'phone_number',
         'email',
     )

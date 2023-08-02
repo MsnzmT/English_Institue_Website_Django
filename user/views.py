@@ -11,9 +11,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 
 
-
 class SignUp(APIView):
-    
     def post(self, request):
         serializer = SignUpSerializer(data=request.data)
         if serializer.is_valid():
