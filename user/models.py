@@ -10,8 +10,8 @@ class CustomUser(AbstractUser):
         ("زن","زن")
     )
     
-    sex = models.CharField(max_length=10, choices=SEX_CHOICES)
-    phone_number = models.CharField(max_length=11, unique=True)
+    sex = models.CharField(max_length=10, choices=SEX_CHOICES, null=True)
+    phone_number = models.CharField(max_length=11, unique=True, null=True)
     location = models.CharField(max_length=20, null=True)
     profile_image = models.ImageField(upload_to='profile_image', null=True)
     
@@ -21,6 +21,9 @@ class CustomUser(AbstractUser):
 
 class Teacher(models.Model):
     fullname = models.CharField(max_length=100)
+    teacher_image = models.ImageField(upload_to='teacher_image', null=True)
+    description = models.TextField(null=True)
+    subtitle = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return self.fullname

@@ -39,3 +39,8 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('email', 'first_name','last_name', 'username', 'sex', 'location', 'phone_number','profile_image')
         
     
+
+class EditUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ('first_name', 'last_name', 'email', 'sex', 'location', 'phone_number','profile_image')

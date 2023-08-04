@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import CustomUser
 from rest_framework import status
-from rest_framework.generics import CreateAPIView, RetrieveAPIView 
+from rest_framework.generics import CreateAPIView, RetrieveAPIView , UpdateAPIView
 from .serializers import *
 from djoser.serializers import TokenSerializer
 from rest_framework.authtoken.models import Token
@@ -26,3 +26,12 @@ class SignUp(APIView):
 @permission_classes([IsAuthenticated])
 def UserView(request):
     return Response(UserSerializer(request.user).data)
+
+
+
+class EditUserView(UpdateAPIView):
+    serializer_class = EditUserSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_object(self):
+        return self.request.user
