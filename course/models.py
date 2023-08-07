@@ -1,19 +1,22 @@
 from django.db import models
 from user.models import Teacher
+from django.contrib.auth import get_user_model
 # Create your models here.
 
+User = get_user_model()
 
 class Course(models.Model):
-    teacher = models.OneToOneField(Teacher, null=True, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(Teacher, null=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=20)
     description = models.TextField(null=True)
     short_description = models.CharField(max_length=50, null=True)
-    course_image = models.ImageField(upload_to='course_image')
-    price = models.IntegerField()
+    course_image = models.ImageField(upload_to='course_image', null=True)
+    price = models.IntegerField(null=True)
     number_of_students = models.IntegerField(default=0)
     number_of_sessions = models.IntegerField(default=0)
     duration = models.IntegerField(default=0)
     content = models.TextField(null=True)
+    students = models.ManyToManyField(User, related_name='courses')
     
     
     
