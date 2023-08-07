@@ -9,7 +9,7 @@ class SignUpSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = get_user_model()
-        fields = ('email', 'first_name','last_name', 'username', 'sex', 'location', 'phone_number','profile_image','password', 'confirm_password')
+        fields = ('email', 'username','password', 'confirm_password')
         
         
     def validate(self, data):
@@ -21,11 +21,6 @@ class SignUpSerializer(serializers.ModelSerializer):
         user = get_user_model().objects.create(
             username=validated_data['username'],
             email=validated_data['email'],
-            first_name=validated_data['first_name'],
-            last_name=validated_data['last_name'],
-            location = validated_data['location'],
-            phone_number = validated_data['phone_number'],
-            sex = validated_data['sex'],
         )
         user.set_password(validated_data['password'])
         user.save()

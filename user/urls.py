@@ -6,5 +6,6 @@ urlpatterns = [
     path('', include('djoser.urls.authtoken')),
     path('me/', UserView),
     path('edit/', EditUserView.as_view()),
+    path('password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
 ]
 

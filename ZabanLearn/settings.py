@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'course',
     'rest_framework.authtoken',
+    'django_rest_passwordreset',
 ]
 
 MIDDLEWARE = [
@@ -142,3 +143,21 @@ AUTH_USER_MODEL = 'user.CustomUser'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+
+
+#EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
+EMAIL_HOST='smtp.c1.liara.email'
+EMAIL_PORT=587
+EMAIL_HOST_USER='angry_engelbart_3qtrgf'
+EMAIL_HOST_PASSWORD='b07be0d7-d680-4f84-8647-cc19d4571cec'
+EMAIL_USE_TLS=True
+
+
+
+DJANGO_REST_PASSWORDRESET_TOKEN_CONFIG = {
+    "CLASS": "django_rest_passwordreset.tokens.RandomNumberTokenGenerator",
+    "OPTIONS": {
+        "min_number": 100000,
+        "max_number": 1000000
+    }
+}
