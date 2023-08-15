@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'course',
     'rest_framework.authtoken',
     'django_rest_passwordreset',
+    'cart.apps.CartConfig',
 ]
 
 MIDDLEWARE = [

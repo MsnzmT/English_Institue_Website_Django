@@ -7,6 +7,7 @@ User = get_user_model()
 
 class Course(models.Model):
     teacher = models.ForeignKey(Teacher, null=True, on_delete=models.CASCADE)
+    users = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=20)
     description = models.TextField(null=True)
     short_description = models.CharField(max_length=50, null=True)
@@ -16,7 +17,6 @@ class Course(models.Model):
     number_of_sessions = models.IntegerField(default=0)
     duration = models.IntegerField(default=0)
     content = models.TextField(null=True)
-    students = models.ManyToManyField(User, related_name='courses')
     
     
     

@@ -1,0 +1,39 @@
+from django.shortcuts import render
+from rest_framework.views import APIView
+from course.models import Course
+from .models import *
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import permission_classes
+from .serializers import *
+from rest_framework.response import Response
+# Create your views here.
+
+
+
+class AddDeleteCartView(APIView):
+    
+    permission_classes = [IsAuthenticated]
+    
+    def put(self, request, course_id):
+        finded_course = Course.objects.get(id=course_id)
+        user_cart = cart.objects.get(user=request.user)
+        if finded_course in user_cart.course.all():
+            return Response({"error":"tekrari hast"}, status=400)
+        user_cart.course.add(finded_course)
+        user_cart.price += finded_course.price
+        user_cart.items += 1
+        user_cart.save()
+        return Response({"message":"ok"}, status=200)
+
+    def delete(self, request, course_id):
+        finded_course = Course.objects.get(id=course_id)
+        user_cart = cart.objects.get(user=request.user)
+        if finded_course not in user_cart.course.all():
+            return Response({"error":"tush nist"}, status=400)
+        user_cart.course.remove(finded_course)
+        user_cart.price -= finded_course.price
+        user_cart.items -= 1
+        user_cart.save()
+        return Response({"message":"ok"}, status=200)
+    
+

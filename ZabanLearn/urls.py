@@ -18,6 +18,7 @@ from django.urls import path,include
 from user.views import SignUp
 import user.urls
 import course.urls
+import cart.urls
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -25,4 +26,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include(user.urls)),
     path('course/', include(course.urls)),
+    path('cart/', include(cart.urls))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
