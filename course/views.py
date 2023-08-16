@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from .models import *
 from .serializers import *
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 
@@ -18,8 +19,9 @@ class CourseDetailView(RetrieveAPIView):
 
 
 
-# class UserCourseView(ListAPIView):
-#     serializer_class = CourseSerializer
-#     def get_queryset(self):
-#         user = self.request.user
-#         return Course.objects.filter(students=user)
+class UserCourseView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CourseSerializer
+    def get_queryset(self):
+        user = self.request.user
+        return Course.objects.filter(users=user)

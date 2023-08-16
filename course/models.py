@@ -7,7 +7,7 @@ User = get_user_model()
 
 class Course(models.Model):
     teacher = models.ForeignKey(Teacher, null=True, on_delete=models.CASCADE)
-    users = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    users = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='courses')
     title = models.CharField(max_length=20)
     description = models.TextField(null=True)
     short_description = models.CharField(max_length=50, null=True)
