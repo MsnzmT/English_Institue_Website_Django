@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
 from .serializers import *
 from rest_framework.response import Response
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 # Create your views here.
 
 
@@ -37,3 +38,8 @@ class AddDeleteCartView(APIView):
         return Response({"message":"ok"}, status=200)
     
 
+class UserCartView(RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = Cartserializer
+    def get_object(self):
+        return cart.objects.get(user=self.request.user)
