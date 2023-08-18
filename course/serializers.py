@@ -7,7 +7,7 @@ from rest_framework.relations import SlugRelatedField, StringRelatedField, Hyper
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
-        fields = ('fullname',)
+        fields = ('fullname','teacher_image', 'description', 'subtitle')
         
 class previewSerializer(serializers.ModelSerializer):
     class Meta:
