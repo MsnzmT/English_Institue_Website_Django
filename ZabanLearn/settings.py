@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_rest_passwordreset',
     'cart.apps.CartConfig',
+    'persiantools',
+    'front',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'front.middlewares.MaintenanceModeMiddleware',
 ]
 
 REST_FRAMEWORK = {

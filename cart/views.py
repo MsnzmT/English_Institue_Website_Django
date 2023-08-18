@@ -43,3 +43,15 @@ class UserCartView(RetrieveAPIView):
     serializer_class = Cartserializer
     def get_object(self):
         return cart.objects.get(user=self.request.user)
+    
+    
+class testView(APIView):
+    def get(self, request):
+        
+        arabic = '۰۱۲۳۴۵۶۷۸۹'
+        english = '0123456789'
+
+        translation_table = str.maketrans(english, arabic)
+
+        translated_num = "9956755308".translate(translation_table)
+        return Response({"message":translated_num})

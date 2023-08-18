@@ -4,12 +4,13 @@ from course.models import Course
 from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 
-
 User = get_user_model()
+
+
 
 class cart(models.Model):
     user = models.OneToOneField(User , on_delete=models.CASCADE, related_name='cart')
-    course = models.ManyToManyField(Course , related_name='cart', null=True, blank=True)
+    course = models.ManyToManyField(Course , related_name='cart', blank=True)
     price = models.IntegerField(default=0)
     final_price = models.IntegerField(default=0)
     items = models.IntegerField(default=0)
