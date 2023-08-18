@@ -11,7 +11,7 @@ class CustomUser(AbstractUser):
     )
     
     sex = models.CharField(max_length=10, choices=SEX_CHOICES, null=True)
-    phone_number = models.CharField(max_length=11, unique=True, null=True)
+    phone_number = models.CharField(max_length=11, unique=True, null=True, blank=True)
     location = models.CharField(max_length=20, null=True)
     profile_image = models.ImageField(upload_to='profile_image', null=True)
     email = models.EmailField(unique=True)
