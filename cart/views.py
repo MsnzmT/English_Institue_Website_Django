@@ -19,9 +19,9 @@ class AddDeleteCartView(APIView):
         finded_course = Course.objects.get(id=course_id)
         user_cart = cart.objects.get(user=request.user)
         if finded_course in user_cart.course.all():
-            return Response({"error":"tekrari hast"}, status=400)
+            return Response({"error":"این دوره در سبد خرید شما موجود هست"}, status=400)
         elif finded_course.users.filter(id=request.user.id).exists():
-            return Response({"error":" shoma ghablan kharidi ino"}, status=400)
+            return Response({"error":"شما قبلا این دوره را خریده اید"}, status=400)
         user_cart.course.add(finded_course)
         user_cart.price += finded_course.price
         user_cart.items += 1
