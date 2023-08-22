@@ -12,8 +12,9 @@ from rest_framework.decorators import api_view, permission_classes
 from django_rest_passwordreset.signals import reset_password_token_created
 from django.core.mail import send_mail
 from django.dispatch import receiver
+from django.contrib.auth import get_user_model  # If used custom user model
 
-
+User = get_user_model()
 
 class SignUp(APIView):
     def post(self, request):
@@ -33,12 +34,20 @@ def UserView(request):
 
 
 
-class EditUserView(UpdateAPIView):
-    serializer_class = EditUserSerializer
+class EditUserView(APIView):
     permission_classes = [IsAuthenticated]
     
-    def get_object(self):
-        return self.request.user
+    def put(self, request, *args, **kwargs):
+        user = request.user
+        serializer = EditUserSerializer(
+            data=request.data,
+            instance=user,
+            partial=True
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message":"ویرایش حساب کاربری با موفقیت انجام شد!"})
+        return Response(serializer.errors, status=status.HTTP_409_CONFLICT)
 
 
 

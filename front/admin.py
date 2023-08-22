@@ -6,6 +6,7 @@ from front.models import *
 class OptionAdmin(admin.ModelAdmin):
     list_display = ("key", "value")
     search_fields = ("key", "value")
+    list_editable = ("value", )
 
 
 admin.site.register(Option, OptionAdmin)
