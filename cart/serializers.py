@@ -14,8 +14,10 @@ class Cartserializer(serializers.ModelSerializer):
     course = CourseSerializer(many=True)
     price = PersianIntegerField()
     items = PersianIntegerField()
+    final_price = PersianIntegerField()
+    discount_price = PersianIntegerField()
     
     class Meta:
         model = cart
-        fields = ('items', 'price', 'course')
+        fields = ('items', 'price', 'course', 'final_price', 'discount_price')
     

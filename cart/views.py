@@ -20,6 +20,8 @@ class AddDeleteCartView(APIView):
         user_cart = cart.objects.get(user=request.user)
         if finded_course in user_cart.course.all():
             return Response({"error":"tekrari hast"}, status=400)
+        elif finded_course.users.filter(id=request.user.id).exists():
+            return Response({"error":" shoma ghablan kharidi ino"}, status=400)
         user_cart.course.add(finded_course)
         user_cart.price += finded_course.price
         user_cart.items += 1
@@ -45,13 +47,31 @@ class UserCartView(RetrieveAPIView):
         return cart.objects.get(user=self.request.user)
     
     
-class testView(APIView):
-    def get(self, request):
-        
-        arabic = '۰۱۲۳۴۵۶۷۸۹'
-        english = '0123456789'
+class PayCartView(APIView):
+    def put(self, request):
+        finded_user = User.objects.get(id=request.user.id)
+        finded_cart = cart.objects.get(user=request.user)
+        if finded_cart.items == 0:
+            return Response({"error":"سبد خرید شما خالی است"}, status=400)
+        finded_user.courses.add(*finded_cart.course.all())
+        finded_cart.course.clear()
+        finded_cart.price = 0
+        finded_cart.items = 0
+        finded_cart.save()
+        return Response({"message":"پرداخت شما با موفقیت انجام شد"}, status=200)
 
-        translation_table = str.maketrans(english, arabic)
 
-        translated_num = "9956755308".translate(translation_table)
-        return Response({"message":translated_num})
+class DiscountView(APIView):
+    def post(self, request):
+        finded_discount = discount.objects.filter(code=request.data['discountcode'])
+        if finded_discount.exists():
+            finded_discount = finded_discount.first()
+            if finded_discount.active:
+                finded_cart = cart.objects.get(user=request.user)
+                finded_cart.discount = finded_discount
+                finded_cart.save()
+                return Response({"message":"کد تخفیف با موفقیت اعمال شد"}, status=200)
+            else:
+                return Response({"error":"کد تخفیف منقضی شده است"}, status=400)
+        else:
+            return Response({"error":"کد تخفیف نامعتبر است"}, status=400)

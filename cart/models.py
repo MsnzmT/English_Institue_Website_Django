@@ -11,10 +11,11 @@ User = get_user_model()
 class cart(models.Model):
     user = models.OneToOneField(User , on_delete=models.CASCADE, related_name='cart')
     course = models.ManyToManyField(Course , related_name='cart', blank=True)
-    price = models.IntegerField(default=0)
-    final_price = models.IntegerField(default=0)
-    items = models.IntegerField(default=0)
+    price = models.PositiveBigIntegerField(default=0)
+    final_price = models.PositiveBigIntegerField(default=0)
+    items = models.PositiveIntegerField(default=0)
     discount = models.ForeignKey('discount', on_delete=models.CASCADE, null=True, blank=True)
+    discount_price = models.PositiveBigIntegerField(default=0)
 
     def __str__(self):
         return 'Cart of : ' + self.user.username
