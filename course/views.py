@@ -33,6 +33,6 @@ class FilterCourse(ListAPIView):
     serializer_class = CourseSerializer
     def get_queryset(self):
         prof = self.request.query_params.get('teachers')
-        if prof == "":
+        if prof == None:
             return Course.objects.all()
         return Course.objects.filter(teacher__fullname=prof)
