@@ -1,0 +1,21 @@
+{
+  "app": "zabanlearner",
+  "disks": [
+    {
+      "name": "teacher",
+      "mountTo": "media/teacher_image"
+    },
+    {
+      "name": "profile",
+      "mountTo": "media/profile_image"
+    },
+    {
+      "name": "course",
+      "mountTo": "media/course_image"
+    },
+    {
+      "name": "preview",
+      "mountTo": "media/preview_video"
+    }
+  ]
+}

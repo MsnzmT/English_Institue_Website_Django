@@ -57,6 +57,7 @@ class PayCartView(APIView):
         finded_cart.course.clear()
         finded_cart.price = 0
         finded_cart.items = 0
+        finded_cart.discount = None
         finded_cart.save()
         return Response({"message":"پرداخت شما با موفقیت انجام شد"}, status=200)
 

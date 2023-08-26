@@ -8,7 +8,7 @@ User = get_user_model()
 class Course(models.Model):
     teacher = models.ForeignKey(Teacher, null=True, on_delete=models.CASCADE)
     users = models.ManyToManyField(User, blank=True, related_name='courses')
-    title = models.CharField(max_length=20)
+    title = models.CharField(max_length=90)
     description = models.TextField(null=True)
     short_description = models.CharField(max_length=50, null=True)
     course_image = models.ImageField(upload_to='course_image', null=True)

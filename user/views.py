@@ -1,9 +1,6 @@
-from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import CustomUser
 from rest_framework import status
-from rest_framework.generics import CreateAPIView, RetrieveAPIView , UpdateAPIView
 from .serializers import *
 from djoser.serializers import TokenSerializer
 from rest_framework.authtoken.models import Token

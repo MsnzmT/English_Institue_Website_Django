@@ -98,6 +98,17 @@ DATABASES = {
 }
 
 
+# DATABASES = {
+#   'default': {
+#       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#       'NAME': 'postgres',
+#       'HOST': 'zabanlearn',
+#       'USER': 'root',
+#       'PASSWORD': 'Q3O1B6dTJo953GDYBGsSFV8g',
+#       'PORT': '5432',
+#   }
+# }
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
