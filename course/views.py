@@ -31,9 +31,26 @@ class FilterCourse(ListAPIView):
     serializer_class = CourseSerializer
     def get_queryset(self):
         prof = self.request.query_params.getlist("teachers")
-        if not prof:
+        lang = self.request.query_params.getlist("languages")
+        if not prof and not lang:
             return Course.objects.all()
-        q_object = Q()
-        for prof_name in prof:
-            q_object |= Q(teacher__fullname=prof_name)
-        return Course.objects.filter(q_object)
+        elif not lang:
+            q_object = Q()
+            for prof_name in prof:
+                q_object |= Q(teacher__fullname=prof_name)
+            return Course.objects.filter(q_object)
+        elif not prof:
+            q_object = Q()
+            for lang_name in lang:
+                q_object |= Q(language=lang_name)
+            return Course.objects.filter(q_object)
+        else:
+            q_object = Q()
+            q_object1 = Q()
+            q_object2 = Q()
+            for prof_name in prof:
+                q_object1 |= Q(teacher__fullname=prof_name)
+            for lang_name in lang:
+                q_object2 |= Q(language=lang_name)
+            q_object = q_object1 & q_object2
+            return Course.objects.filter(q_object)

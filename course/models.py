@@ -6,6 +6,16 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class Course(models.Model):
+    
+    LANGUAGE_CHOICES = (
+        ('فرانسوی','فرانسوی'),
+        ('انگلیسی','انگلیسی'),
+        ('آلمانی','آلمانی'),
+        ('اسپانیایی','اسپانیایی'),
+        ('عربی','عربی'),
+        ('روسی','روسی'),
+    )
+    
     teacher = models.ForeignKey(Teacher, null=True, on_delete=models.CASCADE)
     users = models.ManyToManyField(User, blank=True, related_name='courses')
     title = models.CharField(max_length=90)
@@ -17,6 +27,7 @@ class Course(models.Model):
     number_of_sessions = models.IntegerField(default=0)
     duration = models.IntegerField(default=0)
     content = models.TextField(null=True)
+    language = models.CharField(max_length=30, null=True, blank=True, choices=LANGUAGE_CHOICES)
     
     
     
