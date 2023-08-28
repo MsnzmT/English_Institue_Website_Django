@@ -57,7 +57,7 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
         # message:
         f"سلام\nکد یکبار مصرف شما {reset_password_token.key} می باشد.\nهشدار : لطفا از در اختیار دادن کد به دیگران جدا خودداری نمایید.\n\n با احترام\nتیم پشتیبانی زبان لرن",
         # from:
-        "zabanlearn@support.mohsenzahmatkesh.ir",
+        "support@zabanlearner.ir",
         # to:
         [reset_password_token.user.email]
     )

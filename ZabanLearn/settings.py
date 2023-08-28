@@ -163,8 +163,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 #EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
 EMAIL_HOST='smtp.c1.liara.email'
 EMAIL_PORT=587
-EMAIL_HOST_USER='angry_engelbart_3qtrgf'
-EMAIL_HOST_PASSWORD='b07be0d7-d680-4f84-8647-cc19d4571cec'
+EMAIL_HOST_USER='determined_galois_am0erh'
+EMAIL_HOST_PASSWORD='777525fc-0ad2-4bd6-8fd8-0956b501f7b7'
 EMAIL_USE_TLS=True
 
 
