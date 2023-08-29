@@ -101,11 +101,11 @@ DATABASES = {
 # DATABASES = {
 #   'default': {
 #       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#       'NAME': 'postgres',
-#       'HOST': 'zabanlearn',
-#       'USER': 'root',
-#       'PASSWORD': 'Q3O1B6dTJo953GDYBGsSFV8g',
-#       'PORT': '5432',
+#       'NAME': '',
+#       'HOST': '',
+#       'USER': '',
+#       'PASSWORD': '',
+#       'PORT': '',
 #   }
 # }
 
@@ -161,10 +161,10 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 
 #EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
-EMAIL_HOST='smtp.c1.liara.email'
-EMAIL_PORT=587
-EMAIL_HOST_USER='determined_galois_am0erh'
-EMAIL_HOST_PASSWORD='777525fc-0ad2-4bd6-8fd8-0956b501f7b7'
+EMAIL_HOST=''
+EMAIL_PORT=''
+EMAIL_HOST_USER=''
+EMAIL_HOST_PASSWORD=''
 EMAIL_USE_TLS=True
 
 
