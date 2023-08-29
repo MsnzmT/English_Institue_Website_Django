@@ -2,3 +2,6 @@
 */__pycache__/*
 .git
 venv
+db.sqlite3
+media
+liara.json

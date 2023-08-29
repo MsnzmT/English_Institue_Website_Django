@@ -52,6 +52,8 @@ class EditUserSerializer(serializers.ModelSerializer):
         
         
     def validate_phone_number(self, value):
+        if value == None or value == "":
+            return value
         if not (value.startswith('۰۹') or value.startswith('09')):
             raise serializers.ValidationError("شماره موبایل شما باید با ۰۹ شروع شود")
         if len(value) != 11 :
